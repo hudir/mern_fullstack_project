@@ -14,7 +14,7 @@ const addFakerUser = (req, res) =>{
         },
         created:new Date().toDateString()
     }
-    console.log(fakeUser)
+    // console.log(fakeUser)
 
     User.findOne({username:fakeUser.username},(err,data)=>{
         if(err){

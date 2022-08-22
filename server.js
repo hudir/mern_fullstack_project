@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const cors = require('cors')
 , MONGODB = process.env.MONGODB
 
-const landingRouter = require('./routes/landingRouter')
+const landingRouter = require('./routes/userRouter')
      , productRouter = require('./routes/productRouter')
 
 // connect DB
