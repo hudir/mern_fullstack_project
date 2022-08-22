@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState ,useContext} from "react";
 import axios from "axios";
+import { Context } from "../context/context";
 
-export default function LoginForm({isLoggedIn, setIsLoggedIn}) {
+export default function LoginForm({setLogin}) {
+  const {  setIsLogin,  setUserInfo} = useContext(Context)
+
+
   const [message, setMessage] = useState('')
 
   const [userInput, setUserInput] = useState({
@@ -18,11 +22,18 @@ export default function LoginForm({isLoggedIn, setIsLoggedIn}) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const data = userInput ;
-    axios.post("http://localhost:5000/user/login", data)
+    axios.post("http://localhost:5000/user/login", userInput)
       .then((response) => {
-        setMessage(response.data)
-        // setIsLoggedIn(!isLoggedIn)
+        
+        if(response.data.login){
+          setIsLogin(true)
+          setUserInfo(response.data)
+          setLogin(false)
+          
+        } else{
+          setMessage(response.data)
+        }
+         
         // console.log(response)
       })
       .catch((err) => console.log(err));

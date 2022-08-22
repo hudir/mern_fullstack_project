@@ -8,15 +8,27 @@ const logInController = (req, res) => {
             console.log(err);
         } else {
             // If User exists in database 
+            // console.log(data)
             if(data) {
                 // check if password matches
                 if (data.password === req.body.password) {
-                    res.json(data._id)
+                    //  console.log({
+                    //     login: true,
+                    //     username:data.username,
+                    //     id: data._id,
+                    //     email: data.email
+                    // })
+                    res.json({
+                        login: true,
+                        username:data.username,
+                        id: data._id,
+                        email: data.email
+                    })
 
                 } else {
                     res.json("wrong password")
                 }
-                console.log(data)
+                // console.log(data)
 
             // User does not exist => sign up first
             } else {
