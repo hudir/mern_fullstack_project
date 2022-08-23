@@ -4,7 +4,7 @@ const User = require('../models/User')
 
 const signUpController = (req,res)=>{
     // check if there is already the same username
-    User.findOne({username:req.body.username},(err,data)=>{
+    User.findOne({email:req.body.email},(err,data)=>{
         if(err){
             res.json({err:"valid check fall"})
         } else {
@@ -27,8 +27,10 @@ const signUpController = (req,res)=>{
                     if(err) throw err
                     // console.log(data)
                     res.json({
-                        userLogin:true,
-                        user:data.username
+                        login:true,
+                        username:data.username,
+                        id: data._id,
+                        email: data.email
                     })
                 })
             }

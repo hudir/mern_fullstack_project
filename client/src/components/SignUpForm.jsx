@@ -1,6 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState ,useContext } from 'react'
+import { Context } from "../context/context";
 
-export default function SignUpForm() {
+export default function SignUpForm({setSignUp}) {
+
+    const {  setIsLogin,  setUserInfo} = useContext(Context)
+
     const [userInput, setUserInput] = useState({
         username: '',
         password: '',
@@ -32,7 +36,10 @@ export default function SignUpForm() {
         .then((json) => {
             if(json.err) alert(json.err)
             else {
-                alert('Welcome '+ json.user)
+                alert('Welcome '+ json.username)
+                setIsLogin(true)
+                setUserInfo(json)
+                setSignUp(false)
             }
         });
     }
@@ -44,7 +51,10 @@ export default function SignUpForm() {
         .then((json) => {
             if(json.err) alert(json.err)
             else {
-                alert('Welcome '+ json.user)
+                alert('Welcome '+ json.username)
+                setIsLogin(true)
+                setUserInfo(json)
+                setSignUp(false)
             }
         });
     }

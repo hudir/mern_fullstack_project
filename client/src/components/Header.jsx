@@ -21,7 +21,7 @@ export default function Header() {
             login && <LoginForm setLogin={setLogin}/>
         }
         {
-            signUp && <SignUpForm/>
+            signUp && <SignUpForm setSignUp={setSignUp}/>
         }
         
 

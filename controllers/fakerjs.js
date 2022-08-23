@@ -16,7 +16,7 @@ const addFakerUser = (req, res) =>{
     }
     // console.log(fakeUser)
 
-    User.findOne({username:fakeUser.username},(err,data)=>{
+    User.findOne({email:fakeUser.email},(err,data)=>{
         if(err){
             res.json({err:"valid check fall"})
         } else {
@@ -29,8 +29,10 @@ const addFakerUser = (req, res) =>{
                     if(err) throw err
                     console.log(data)
                     res.json({
-                        userLogin:true,
-                        user:data.username
+                        login:true,
+                        username:data.username,
+                        id: data._id,
+                        email: data.email
                     })
                 })
             }
