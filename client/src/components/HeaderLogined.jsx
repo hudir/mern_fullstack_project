@@ -49,7 +49,7 @@ export default function HeaderLogined() {
 
         {userProduct && <>
            <hr />
-           <h1>My Product</h1>
+           <h1>My Products</h1>
             {userProduct.map((ele,i)=>
             <div key={i}>
                 <h2>{ele.product_title}</h2>

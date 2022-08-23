@@ -8,6 +8,7 @@ export default function Product() {
   
   return (
     <div>
+      <h1>All Products</h1>
       {
          allProducts && allProducts.map((ele,i) => (
            <div key={i}>
