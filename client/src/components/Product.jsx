@@ -1,16 +1,9 @@
 import React from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useContext } from 'react'
+import { Context } from '../context/context'
 
 export default function Product() {
-  const [allProducts, setAllProducts] = useState()
-
-  useEffect(()=>{
-    fetch('http://localhost:5000/product/all')
-    .then(res=>res.json(res))
-    .then(data=>setAllProducts(data))
-  }, [])
-
+  const {allProducts} = useContext(Context)
   // console.log(allProducts)
   
   return (

@@ -18,6 +18,7 @@ const logInController = (req, res) => {
                     //     id: data._id,
                     //     email: data.email
                     // })
+                    // req.userId = data._id
                     res.json({
                         login: true,
                         username:data.username,

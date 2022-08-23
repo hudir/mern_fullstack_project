@@ -5,14 +5,17 @@ import { Context } from '../context/context'
 
 export default function HeaderLogined() {
 
-    const {userInfo} = useContext(Context)
-    // const [msg, setMsg] = useState('')
+    const {userInfo, setUpdateProductList, updateProductList} = useContext(Context)
+    
 
     const addFakerProduct = e =>{
         fetch('http://localhost:5000/product/add/'+ userInfo.id)
         .then(res=>res.json(res))
-        .then(data=>alert(data.msg + ' by '+ userInfo.username))
-        
+        .then(data=>{
+            alert(data.msg + ' by '+ userInfo.username)
+            setUpdateProductList(pre=>+pre+1)
+            // console.log(updateProductList)
+        }) 
     }
 
   return (
