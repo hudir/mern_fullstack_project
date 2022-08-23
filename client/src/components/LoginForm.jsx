@@ -2,7 +2,7 @@ import React, { useState ,useContext} from "react";
 import axios from "axios";
 import { Context } from "../context/context";
 
-export default function LoginForm({setLogin}) {
+export default function LoginForm({setLogin, setSignUp}) {
   const {  setIsLogin,  setUserInfo} = useContext(Context)
 
 
@@ -29,6 +29,7 @@ export default function LoginForm({setLogin}) {
           setIsLogin(true)
           setUserInfo(response.data)
           setLogin(false)
+          setSignUp(false)
           
         } else{
           setMessage(response.data)
@@ -44,6 +45,7 @@ export default function LoginForm({setLogin}) {
      <form onSubmit={submitHandler}>
         <label>Email:</label>
         <input type="email" name="email" onChange={onChangeHandler} />
+        <br />
         <label>Password:</label>
         <input type="password" name="password" onChange={onChangeHandler} />
         <button type="submit">Log in</button>

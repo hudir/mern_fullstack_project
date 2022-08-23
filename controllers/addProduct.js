@@ -7,11 +7,16 @@ const addProduct = (req, res) =>{
         price: faker.commerce.price(),
         quantity: faker.datatype.number(),
         created_at: Date.now(),
-        added_by: "63033ed215508d61d6150882"
+        added_by: req.params.userId
     }
 
     new Product(newProduct).save((err,data)=>{
-        res.json('1 product has been added')
+        if(err) {
+            return console.log(err)
+        }
+        res.json({
+            msg:data.product_title + ' has been added'
+        })
     })
 
 }

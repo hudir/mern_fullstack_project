@@ -2,6 +2,7 @@ import React from 'react'
 import { useContext } from 'react'
 import { useState } from 'react'
 import { Context } from '../context/context'
+import HeaderLogined from './HeaderLogined'
 import LoginForm from './LoginForm'
 import SignUpForm from './SignUpForm'
 
@@ -12,16 +13,16 @@ export default function Header() {
         
   return (
     <div>
-        { !isLogin && <>
+        { !isLogin ? <>
             <button onClick={e=>setLogin(!login)}>Login</button>
             <button onClick={e=>setSignUp(!signUp)}>signUp</button>
-        </>}
+        </> : <HeaderLogined />}
 
         {
-            login && <LoginForm setLogin={setLogin}/>
+            login && <LoginForm setLogin={setLogin} setSignUp={setSignUp} />
         }
         {
-            signUp && <SignUpForm setSignUp={setSignUp}/>
+            signUp && <SignUpForm setSignUp={setSignUp} setLogin={setLogin}/>
         }
         
 

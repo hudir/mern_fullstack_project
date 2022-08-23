@@ -5,7 +5,7 @@ const express = require('express')
     , showAllProducts = require('../controllers/showAllProducts')
 
     
-    productRouter.get('/add', addProduct)
+    productRouter.get('/add/:userId', addProduct)
     productRouter.get('/allByUser/:userId', allUserProduct) 
     productRouter.get('/all', showAllProducts)
 

@@ -1,7 +1,7 @@
 import React, { useState ,useContext } from 'react'
 import { Context } from "../context/context";
 
-export default function SignUpForm({setSignUp}) {
+export default function SignUpForm({setSignUp, setLogin}) {
 
     const {  setIsLogin,  setUserInfo} = useContext(Context)
 
@@ -40,6 +40,7 @@ export default function SignUpForm({setSignUp}) {
                 setIsLogin(true)
                 setUserInfo(json)
                 setSignUp(false)
+                setLogin(false)
             }
         });
     }
@@ -55,6 +56,7 @@ export default function SignUpForm({setSignUp}) {
                 setIsLogin(true)
                 setUserInfo(json)
                 setSignUp(false)
+                setLogin(false)
             }
         });
     }

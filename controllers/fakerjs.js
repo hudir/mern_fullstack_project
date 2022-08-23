@@ -27,7 +27,7 @@ const addFakerUser = (req, res) =>{
                 const newUser = new User(fakeUser)
                 newUser.save((err,data)=>{
                     if(err) throw err
-                    console.log(data)
+                    // console.log(data)
                     res.json({
                         login:true,
                         username:data.username,
