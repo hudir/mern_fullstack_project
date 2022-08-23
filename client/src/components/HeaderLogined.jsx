@@ -9,7 +9,43 @@ export default function HeaderLogined() {
     const {userInfo, setUpdateProductList, updateProductList} = useContext(Context)
     
     const [userProduct, setUserProduct] = useState()
+        , [editInput, setEditInput] = useState({
+            product_title:'',
+            quantity: '',
+            price: ''
+        })
+    
+    // for updating a product
+    const editInputHandler = e =>{
+        setEditInput((pre) => ({
+            ...pre,
+            [e.target.name]: e.target.value,
+          }))
+        // console.log(editInput)
+    }
+    
+    const editProduct = index =>{
+        const newUserProduct = userProduct.map((ele,i)=>{
+            if(+i===+index){
+                ele.edit = !ele.edit
+            }
+            return ele
+        })
+        setUserProduct(newUserProduct)
+    }
 
+    // for delete a product
+    const deleteProduct = id =>{
+        fetch('http://localhost:5000/product/delete/'+ id)
+        .then(res=>res.json(res))
+        .then(data=>{
+            alert('The Product is deleted')
+            setUpdateProductList(pre=>+pre-1)
+        }) 
+
+    }
+
+    // for add a fake product added_by current user
     const addFakerProduct = e =>{
         fetch('http://localhost:5000/product/add/'+ userInfo.id)
         .then(res=>res.json(res))
@@ -20,6 +56,7 @@ export default function HeaderLogined() {
         }) 
     }
 
+    // for showing the products added by current user
     const showUserProduct = e =>{
         fetch('http://localhost:5000/product/allByUser/'+ userInfo.id)
         .then(res=>res.json(res))
@@ -33,7 +70,12 @@ export default function HeaderLogined() {
             fetch('http://localhost:5000/product/allByUser/'+ userInfo.id)
             .then(res=>res.json(res))
             .then(data=>{
-                setUserProduct(data)      
+                const newData = data.map(el=>{
+                    el.edit=true
+                    return el
+                })
+                // console.log(newData)
+                setUserProduct(newData)      
             }) 
         }
     }, [updateProductList])
@@ -52,9 +94,20 @@ export default function HeaderLogined() {
            <h1>My Products</h1>
             {userProduct.map((ele,i)=>
             <div key={i}>
-                <h2>{ele.product_title}</h2>
-                <h4>quantity: {ele.quantity}</h4>
-                <h4>price: {ele.price}</h4>
+                {ele.edit ? <h2>{ele.product_title}</h2> : <input type="text" placeholder={ele.product_title} name='product_title' onChange={editInputHandler}/> }
+                
+                {ele.edit && <>
+                    <button onClick={()=>deleteProduct(ele._id)}>Delete</button>
+                    <button onClick={()=>editProduct(i)}>Update</button>
+                </>}
+                
+                <h4>quantity: {ele.edit ? ele.quantity : <><input type="number" placeholder={ele.quantity} name='quantity' onChange={editInputHandler}/></>}</h4>
+
+                <h4>price: {ele.edit ? ele.price : <><input type="number" placeholder={ele.price} name='price' onChange={editInputHandler}/></>}</h4>
+                
+                {!ele.edit && <>
+                <button>Confirm Update</button>
+                <button onClick={()=>editProduct(i)}>Cancel</button></>}
             </div>
             )}
             <hr />

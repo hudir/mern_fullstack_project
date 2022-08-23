@@ -3,10 +3,12 @@ const express = require('express')
     , addProduct = require('../controllers/addProduct')
     , allUserProduct = require('../controllers/allUserProduct')
     , showAllProducts = require('../controllers/showAllProducts')
+    , deleteProductById = require('../controllers/deleteProductById')
 
     
     productRouter.get('/add/:userId', addProduct)
     productRouter.get('/allByUser/:userId', allUserProduct) 
     productRouter.get('/all', showAllProducts)
+    productRouter.get('/delete/:productId', deleteProductById)
 
 module.exports = productRouter
