@@ -22,7 +22,7 @@ export default function LoginForm({setLogin, setSignUp}) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:5000/user/login", userInput)
+    axios.post("/user/login", userInput)
       .then((response) => {
         
         if(response.data.login){

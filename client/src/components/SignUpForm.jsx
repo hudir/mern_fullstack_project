@@ -25,7 +25,7 @@ export default function SignUpForm({setSignUp, setLogin}) {
     const signUpHandler = e =>{
         e.preventDefault();
         // console.log(userInput)
-        fetch('http://localhost:5000/user/signup', {
+        fetch('/user/signup', {
         method: 'POST',
         body: JSON.stringify(userInput),
         headers: {
@@ -47,7 +47,7 @@ export default function SignUpForm({setSignUp, setLogin}) {
 
     const addFakeUser = e =>{
         e.preventDefault();
-        fetch('http://localhost:5000/user/add')
+        fetch('/user/add')
         .then((response) => response.json())
         .then((json) => {
             if(json.err) alert(json.err)

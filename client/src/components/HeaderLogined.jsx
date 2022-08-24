@@ -16,6 +16,24 @@ export default function HeaderLogined() {
         })
     
     // for updating a product
+
+    const confirmUpdateHandler = (id, index) =>{
+        fetch('/product/update', {
+            method: 'POST',
+            body: JSON.stringify({...editInput, _id:id}),
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+            },
+            })
+            .then((response) => response.json())
+            .then(json=>{
+                if(json.update){
+                    setUpdateProductList(pre=>+pre+1)
+
+                }
+            })
+    }
+
     const editInputHandler = e =>{
         setEditInput((pre) => ({
             ...pre,
@@ -36,7 +54,7 @@ export default function HeaderLogined() {
 
     // for delete a product
     const deleteProduct = id =>{
-        fetch('http://localhost:5000/product/delete/'+ id)
+        fetch('/product/delete/'+ id)
         .then(res=>res.json(res))
         .then(data=>{
             alert('The Product is deleted')
@@ -47,7 +65,7 @@ export default function HeaderLogined() {
 
     // for add a fake product added_by current user
     const addFakerProduct = e =>{
-        fetch('http://localhost:5000/product/add/'+ userInfo.id)
+        fetch('/product/add/'+ userInfo.id)
         .then(res=>res.json(res))
         .then(data=>{
             alert(data.msg + ' by '+ userInfo.username)
@@ -58,7 +76,7 @@ export default function HeaderLogined() {
 
     // for showing the products added by current user
     const showUserProduct = e =>{
-        fetch('http://localhost:5000/product/allByUser/'+ userInfo.id)
+        fetch('/product/allByUser/'+ userInfo.id)
         .then(res=>res.json(res))
         .then(data=>{
             const newData = data.map(el=>{
@@ -71,7 +89,7 @@ export default function HeaderLogined() {
 
     useEffect(()=>{
         if(userProduct){
-            fetch('http://localhost:5000/product/allByUser/'+ userInfo.id)
+            fetch('/product/allByUser/'+ userInfo.id)
             .then(res=>res.json(res))
             .then(data=>{
                 const newData = data.map(el=>{
@@ -110,7 +128,7 @@ export default function HeaderLogined() {
                 <h4>price: {ele.edit ? ele.price : <><input type="number" placeholder={ele.price} name='price' onChange={editInputHandler}/></>}</h4>
                 
                 {!ele.edit && <>
-                <button>Confirm Update</button>
+                <button onClick={()=>confirmUpdateHandler(ele._id, i)}>Confirm Update</button>
                 <button onClick={()=>editProduct(i)}>Cancel</button></>}
             </div>
             )}

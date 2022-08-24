@@ -8,6 +8,7 @@ function ContextProvider({children}) {
         , [userInfo, setUserInfo] = useState()
         , [allProducts, setAllProducts] = useState()
         , [updateProductList, setUpdateProductList] = useState(0)
+        , [cart, setCart] = useState([])
 
         useEffect(()=>{
           fetch('http://localhost:5000/product/all')
@@ -19,7 +20,8 @@ function ContextProvider({children}) {
             isLogin, setIsLogin,
             userInfo, setUserInfo,
             allProducts, setAllProducts,
-            setUpdateProductList, updateProductList
+            setUpdateProductList, updateProductList,
+            cart, setCart
 
         }}>{children}</Context.Provider>
     )
