@@ -9,6 +9,7 @@ const cors = require('cors')
 
 const landingRouter = require('./routes/userRouter')
      , productRouter = require('./routes/productRouter')
+     , orderRouter = require('./routes/orderRouter')
 
 // connect DB
 // task: ADD YOUR DB LINK FROM .env
@@ -33,6 +34,8 @@ app.use(cors())
 app.use('/user', landingRouter)
 
 app.use('/product',productRouter )
+
+app.use('/order', orderRouter)
 
 
 /**

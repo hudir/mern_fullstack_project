@@ -7,7 +7,7 @@ export default function Cart() {
 
     const payOrderHandler = e =>{
         // console.log(userInfo)
-        fetch('/user/order', {
+        fetch('/order/add', {
             method: 'POST',
             body: JSON.stringify({
                 order:cart,
@@ -22,8 +22,8 @@ export default function Cart() {
             })
             .then((response) => response.json())
             .then(json=>{
-                console.log(json)
-                alert('Thanks for your purchase')
+                // console.log(json)
+                alert('Thanks for your purchase/n'+JSON.stringify(json))
                 setCart([])
                 
             })
@@ -39,7 +39,7 @@ export default function Cart() {
         </div>))}
         <h2>Total: {cart.reduce((acc, item)=>acc + item.price * item.quantity , 0)} €</h2>
 
-        <button onClick={payOrderHandler}>Pay the order</button>
+        {cart.length>0 && <button onClick={payOrderHandler}>Pay the order</button>}
     </div>
   )
 }

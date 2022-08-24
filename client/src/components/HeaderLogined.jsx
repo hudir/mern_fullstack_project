@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 // import { useState } from 'react'
 import { useContext } from 'react'
 import { Context } from '../context/context'
+import Order from './Order'
 
 export default function HeaderLogined() {
 
@@ -14,6 +15,7 @@ export default function HeaderLogined() {
             quantity: '',
             price: ''
         })
+        , [showOrder, setShowOrder] = useState(false)
     
     // for updating a product
 
@@ -111,6 +113,9 @@ export default function HeaderLogined() {
         <button onClick={addFakerProduct}>Add Faker Product</button>
         <button onClick={showUserProduct}>My Product</button>
         <button onClick={()=>setShowCart(pre=>!pre)}>Cart</button>
+        <button onClick={()=>setShowOrder(pre=>!pre)}>My Orders</button>
+
+        {showOrder && <Order />}
 
         {userProduct && <>
            <hr />
