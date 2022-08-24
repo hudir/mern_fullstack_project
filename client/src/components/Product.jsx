@@ -23,10 +23,7 @@ export default function Product() {
               } else return [...pre, productToAdd]
             })
         }) 
-    }
-
-    // go into if
-    
+    } 
   }
   
   return (
@@ -37,7 +34,7 @@ export default function Product() {
            <div key={i}>
               <h3>{ele.product_title}</h3>
               <h5>quantity: {ele.quantity}</h5>
-              <h5>price: {ele.price}</h5>
+              <h5>price: {ele.price} €</h5>
               {isLogin && ( <button onClick={()=>addToCartHandler(ele)}>Add to cart</button> )}
            </div>
          ))

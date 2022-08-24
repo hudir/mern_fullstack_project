@@ -7,12 +7,12 @@ import Product from './Product'
 
 export default function LandingPage() {
   
-  const {isLogin} = useContext(Context)
+  const {showCart} = useContext(Context)
 
   return (
     <div>
         <Header/>
-        {isLogin && <Cart />}
+        {showCart && <Cart />}
         <Product/>
     </div>
   )

@@ -7,7 +7,9 @@ const  express= require("express")
 , signUpController = require('../controllers/signUpController')
 , addFakerUser = require('../controllers/fakerjs')
 , logInController = require('../controllers/logInController')
+, payOrder = require('../controllers/payOrder')
 
+landingRouter.post('/order', payOrder)
 landingRouter.post('/signup', signUpController)
 
 landingRouter.get('/add', addFakerUser)

@@ -6,7 +6,7 @@ import { Context } from '../context/context'
 
 export default function HeaderLogined() {
 
-    const {userInfo, setUpdateProductList, updateProductList} = useContext(Context)
+    const {userInfo, setUpdateProductList, updateProductList, setShowCart} = useContext(Context)
     
     const [userProduct, setUserProduct] = useState()
         , [editInput, setEditInput] = useState({
@@ -110,6 +110,7 @@ export default function HeaderLogined() {
 
         <button onClick={addFakerProduct}>Add Faker Product</button>
         <button onClick={showUserProduct}>My Product</button>
+        <button onClick={()=>setShowCart(pre=>!pre)}>Cart</button>
 
         {userProduct && <>
            <hr />
@@ -125,7 +126,7 @@ export default function HeaderLogined() {
                 
                 <h4>quantity: {ele.edit ? ele.quantity : <><input type="number" placeholder={ele.quantity} name='quantity' onChange={editInputHandler}/></>}</h4>
 
-                <h4>price: {ele.edit ? ele.price : <><input type="number" placeholder={ele.price} name='price' onChange={editInputHandler}/></>}</h4>
+                <h4>price: {ele.edit ? ele.price : <><input type="number" placeholder={ele.price} name='price' onChange={editInputHandler}/></>} €</h4>
                 
                 {!ele.edit && <>
                 <button onClick={()=>confirmUpdateHandler(ele._id, i)}>Confirm Update</button>

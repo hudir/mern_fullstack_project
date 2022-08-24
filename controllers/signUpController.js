@@ -30,7 +30,8 @@ const signUpController = (req,res)=>{
                         login:true,
                         username:data.username,
                         id: data._id,
-                        email: data.email
+                        email: data.email,
+                        address: data.address
                     })
                 })
             }
