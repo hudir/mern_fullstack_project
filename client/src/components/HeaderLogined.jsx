@@ -61,7 +61,11 @@ export default function HeaderLogined() {
         fetch('http://localhost:5000/product/allByUser/'+ userInfo.id)
         .then(res=>res.json(res))
         .then(data=>{
-            setUserProduct(data)      
+            const newData = data.map(el=>{
+                el.edit=true
+                return el
+            })
+            setUserProduct(newData)      
         }) 
     }
 
