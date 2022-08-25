@@ -1,13 +1,14 @@
 import React from 'react'
 import { useContext } from 'react'
 import { Context } from '../context/context'
+import baseUrl from '../config'
 
 export default function Cart() {
     const {cart, userInfo,setCart, setShowCart} = useContext(Context)
 
     const payOrderHandler = e =>{
         // console.log(userInfo)
-        fetch('/order/add', {
+        fetch(baseUrl+ '/order/add', {
             method: 'POST',
             body: JSON.stringify({
                 order:cart,

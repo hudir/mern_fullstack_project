@@ -1,3 +1,4 @@
+import baseUrl from '../config'
 const { createContext, useState, useEffect } = require("react");
 
 
@@ -12,12 +13,9 @@ function ContextProvider({children}) {
         , [showCart, setShowCart] = useState(false)
 
         useEffect(()=>{
-          fetch('/product/all')
-          .then(res=>res.json())
-          .then(data=>{
-            console.log(data)
-            setAllProducts(data)
-          })
+          fetch(baseUrl+ '/product/all')
+          .then(res=>res.json(res))
+          .then(data=>setAllProducts(data))
         }, [updateProductList])
     return(
         <Context.Provider value={{

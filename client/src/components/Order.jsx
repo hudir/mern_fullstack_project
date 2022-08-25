@@ -3,14 +3,15 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { useContext } from 'react'
 import { Context } from '../context/context'
+import baseUrl from '../config'
 
 export default function Order({setShowOrder}) {
     const { userInfo } = useContext(Context)
     const [order, setOrder] = useState([])
 
     useEffect(()=>{
-        fetch('/order/my/' + userInfo.id)
-        .then(res=>res.json())
+        fetch(baseUrl+'/order/my/' + userInfo.id)
+        .then(res=>res.json(res))
         .then(data=>{
            setOrder(data)
         })
