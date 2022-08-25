@@ -13,7 +13,7 @@ function ContextProvider({children}) {
 
         useEffect(()=>{
           fetch('/product/all')
-          .then(res=>res.json(res))
+          .then(res=>res.json())
           .then(data=>setAllProducts(data))
         }, [updateProductList])
     return(

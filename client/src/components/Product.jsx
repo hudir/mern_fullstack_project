@@ -8,7 +8,7 @@ export default function Product() {
   const addToCartHandler = product =>{
     if(product.quantity>0){
       fetch('/product/addToCart/'+ product._id)
-        .then(res=>res.json(res))
+        .then(res=>res.json())
         .then(data=>{
             setUpdateProductList(pre=>+pre-1)
             const productToAdd = {...product, quantity:1}

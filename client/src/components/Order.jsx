@@ -10,7 +10,7 @@ export default function Order({setShowOrder}) {
 
     useEffect(()=>{
         fetch('/order/my/' + userInfo.id)
-        .then(res=>res.json(res))
+        .then(res=>res.json())
         .then(data=>{
            setOrder(data)
         })

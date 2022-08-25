@@ -57,7 +57,7 @@ export default function HeaderLogined() {
     // for delete a product
     const deleteProduct = id =>{
         fetch('/product/delete/'+ id)
-        .then(res=>res.json(res))
+        .then(res=>res.json())
         .then(data=>{
             alert('The Product is deleted')
             setUpdateProductList(pre=>+pre-1)
@@ -68,7 +68,7 @@ export default function HeaderLogined() {
     // for add a fake product added_by current user
     const addFakerProduct = e =>{
         fetch('/product/add/'+ userInfo.id)
-        .then(res=>res.json(res))
+        .then(res=>res.json())
         .then(data=>{
             alert(data.msg + ' by '+ userInfo.username)
             setUpdateProductList(pre=>+pre+1)
@@ -79,7 +79,7 @@ export default function HeaderLogined() {
     // for showing the products added by current user
     const showUserProduct = e =>{
         fetch('/product/allByUser/'+ userInfo.id)
-        .then(res=>res.json(res))
+        .then(res=>res.json())
         .then(data=>{
             const newData = data.map(el=>{
                 el.edit=true
@@ -92,7 +92,7 @@ export default function HeaderLogined() {
     useEffect(()=>{
         if(userProduct){
             fetch('/product/allByUser/'+ userInfo.id)
-            .then(res=>res.json(res))
+            .then(res=>res.json())
             .then(data=>{
                 const newData = data.map(el=>{
                     el.edit=true
