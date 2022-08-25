@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+ import React, { useState } from 'react'
 import { useEffect } from 'react'
 // import { useState } from 'react'
 import { useContext } from 'react'
@@ -106,39 +106,55 @@ export default function HeaderLogined() {
 
   return (
     <div>
+        <div className="container text-center">
         <p>UserName: {userInfo.username}</p>
         <p>Email: {userInfo.email}</p>
-        <p>Id: {userInfo.id}</p>
+        {/* <p>Id: {userInfo.id}</p> */}
+        <p>Address: {userInfo.address.street}, {userInfo.address.city}, {userInfo.address.zipcode}</p>
 
-        <button onClick={addFakerProduct}>Add Faker Product</button>
-        <button onClick={showUserProduct}>My Product</button>
-        <button onClick={()=>setShowCart(pre=>!pre)}>Cart</button>
-        <button onClick={()=>setShowOrder(pre=>!pre)}>My Orders</button>
+        </div>
+        
 
-        {showOrder && <Order />}
+        <button className='btn btn-success mx-1' onClick={addFakerProduct}>Add Faker Product</button>
+        <button className='btn btn-success mx-1' onClick={showUserProduct}>My Product</button>
+        <button className='btn btn-success mx-1' onClick={()=>setShowCart(pre=>!pre)}>Cart</button>
+        <button className='btn btn-success mx-1' onClick={()=>setShowOrder(pre=>!pre)}>My Orders</button>
+
+        {showOrder && <Order setShowOrder={setShowOrder}/>}
 
         {userProduct && <>
+          
+           <h1 className='text-center'>My Products</h1>
            <hr />
-           <h1>My Products</h1>
+           <div className='productContainer d-flex flex-row flex-wrap'>
             {userProduct.map((ele,i)=>
-            <div key={i}>
-                {ele.edit ? <h2>{ele.product_title}</h2> : <input type="text" placeholder={ele.product_title} name='product_title' onChange={editInputHandler}/> }
+            <div key={i} className="card m-2 text-center">
+                {ele.edit ? <h5 className="card-title">{ele.product_title}</h5> : <p className="card-title">product title: <input type="text" placeholder={ele.product_title} name='product_title' onChange={editInputHandler}/></p> }
                 
-                {ele.edit && <>
-                    <button onClick={()=>deleteProduct(ele._id)}>Delete</button>
-                    <button onClick={()=>editProduct(i)}>Update</button>
-                </>}
-                
-                <h4>quantity: {ele.edit ? ele.quantity : <><input type="number" placeholder={ele.quantity} name='quantity' onChange={editInputHandler}/></>}</h4>
+                <ul className="list-group list-group-flush">
 
-                <h4>price: {ele.edit ? ele.price : <><input type="number" placeholder={ele.price} name='price' onChange={editInputHandler}/></>} €</h4>
+                <li className="list-group-item">  
+                {ele.edit && <>
+                    <button className='btn btn-danger mx-1' onClick={()=>deleteProduct(ele._id)}>Delete</button>
+                    <button className='btn btn-info mx-1' onClick={()=>editProduct(i)}>Update</button>
+                </>}
+                </li>
+
+                <li className="list-group-item">quantity: {ele.edit ? ele.quantity : <><input type="number" placeholder={ele.quantity} name='quantity' onChange={editInputHandler}/></>}</li>
+
+                <li className="list-group-item">price: {ele.edit ? ele.price : <><input type="number" placeholder={ele.price} name='price' onChange={editInputHandler}/></>} €</li>
                 
+                <li className="list-group-item">
                 {!ele.edit && <>
-                <button onClick={()=>confirmUpdateHandler(ele._id, i)}>Confirm Update</button>
-                <button onClick={()=>editProduct(i)}>Cancel</button></>}
+                <button className='btn btn-info ' onClick={()=>confirmUpdateHandler(ele._id, i)}>Confirm Update</button>
+                <button className='btn btn-secondary mx-2' onClick={()=>editProduct(i)}>Cancel</button></>}
+                </li>
+
+                </ul>
             </div>
             )}
-            <hr />
+            </div>
+           <hr />
         </>}
     </div>
   )

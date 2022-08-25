@@ -62,35 +62,38 @@ export default function SignUpForm({setSignUp, setLogin}) {
     }
     
   return (
-    <form onSubmit={signUpHandler}>
+    <form onSubmit={signUpHandler}  className='container text-center'>
+        <button className='btn btn-primary m-2' onClick={addFakeUser}>Sign Up als FakeUser</button>
         <div>
+            or Sign Up als new User
+            <br />
             User Name:
-            <input type="text" name='username' onChange={onChangeHandler}/>
+            <input className="form-control" type="text" name='username' onChange={onChangeHandler}/>
         </div>
         <div>
             Password:
-            <input type="text" name='password' onChange={onChangeHandler}/>
+            <input className="form-control" type="text" name='password' onChange={onChangeHandler}/>
         </div>
         <div>
             Email:
-            <input type="email" name="email" onChange={onChangeHandler}/>
+            <input className="form-control" type="email" name="email" onChange={onChangeHandler}/>
         </div>
         <div>
             Street:
-            <input type="text" name='street' onChange={onChangeHandler}/>
+            <input className="form-control" type="text" name='street' onChange={onChangeHandler}/>
         </div>
         <div>
             City:
-            <input type="text" name='city' onChange={onChangeHandler}/>
+            <input className="form-control" type="text" name='city' onChange={onChangeHandler}/>
         </div>
         <div>
             Zip Code:
-            <input type="number" name='zipcode' onChange={onChangeHandler}/>
+            <input className="form-control" type="number" name='zipcode' onChange={onChangeHandler}/>
         </div>
 
-        <button type="submit">Sign up</button>
+        <button className='btn btn-primary m-2' type="submit">Sign up</button>
 
-        <button onClick={addFakeUser}>addFakeUser</button>
+        
     </form>
   )
 }

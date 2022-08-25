@@ -26,19 +26,29 @@ export default function Product() {
     } 
   }
   
-  return (
-    <div>
-      <h1>All Products</h1>
+  return (<>
+   <h1 className='text-center'>All Products</h1>
+    <div className='productContainer d-flex flex-row flex-wrap'>
+     
       {
          allProducts && allProducts.map((ele,i) => (
-           <div key={i}>
-              <h3>{ele.product_title}</h3>
-              <h5>quantity: {ele.quantity}</h5>
-              <h5>price: {ele.price} €</h5>
-              {isLogin && ( <button onClick={()=>addToCartHandler(ele)}>Add to cart</button> )}
+           <div key={i} className="card m-2 text-center" >
+
+           <div className="card-body">
+               <h5 className="card-title">{ele.product_title}</h5>
+               {/* <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
+             </div>
+             <ul className="list-group list-group-flush">
+               <li className="list-group-item">quantity: {ele.quantity}</li>
+               <li className="list-group-item">price: {ele.price} €</li>
+             </ul>
+              
+             
+              {isLogin && ( <button className='btn btn-primary m-2' onClick={()=>addToCartHandler(ele)}>Add to cart</button> )}
            </div>
          ))
       }
     </div>
+    </>
   )
 }

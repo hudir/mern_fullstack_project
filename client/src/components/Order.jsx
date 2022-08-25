@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useContext } from 'react'
 import { Context } from '../context/context'
 
-export default function Order() {
+export default function Order({setShowOrder}) {
     const { userInfo } = useContext(Context)
     const [order, setOrder] = useState([])
 
@@ -17,7 +17,7 @@ export default function Order() {
     },[])
 
   return (
-    <div>
+    <div className='order' onClick={()=>setShowOrder(false)}>
       {order.length>0 && <>
 
         {order.map((ele, i)=>( <div key={i}>
@@ -30,6 +30,7 @@ export default function Order() {
            </ul>
 
            <h3>Total: {ele.totalPrice} €</h3>
+           <hr />
         </div> ))}
       </>}
     </div>

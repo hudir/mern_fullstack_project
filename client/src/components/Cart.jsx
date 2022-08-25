@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { Context } from '../context/context'
 
 export default function Cart() {
-    const {cart, userInfo,setCart} = useContext(Context)
+    const {cart, userInfo,setCart, setShowCart} = useContext(Context)
 
     const payOrderHandler = e =>{
         // console.log(userInfo)
@@ -23,15 +23,16 @@ export default function Cart() {
             .then((response) => response.json())
             .then(json=>{
                 // console.log(json)
-                alert('Thanks for your purchase/n'+JSON.stringify(json))
+                // alert('Thanks for your purchase/n'+JSON.stringify(json))
+                alert('Thanks for your purchase')
                 setCart([])
                 
             })
     }
     
   return (
-    <div>
-        <h2>Shopping Cart</h2>
+    <div className='text-center cart' onClick={()=>{setShowCart(false)}}>
+        <h1 >Shopping Cart</h1>
         {cart.map((item, i)=>(<div key={i}>
          <h3>{item.product_title}</h3>
          <p>quantity: {item.quantity}</p>
@@ -39,7 +40,7 @@ export default function Cart() {
         </div>))}
         <h2>Total: {cart.reduce((acc, item)=>acc + item.price * item.quantity , 0)} €</h2>
 
-        {cart.length>0 && <button onClick={payOrderHandler}>Pay the order</button>}
+        {cart.length>0 && <button className='btn btn-warning m-3' onClick={payOrderHandler}>Pay the order</button>}
     </div>
   )
 }

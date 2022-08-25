@@ -14,8 +14,8 @@ export default function Header() {
   return (
     <div>
         { !isLogin ? <>
-            <button onClick={e=>setLogin(!login)}>Login</button>
-            <button onClick={e=>setSignUp(!signUp)}>signUp</button>
+            <button className='btn btn-primary m-2' onClick={e=>setLogin(!login)}>Login</button>
+            <button className='btn btn-primary m-2' onClick={e=>setSignUp(!signUp)}>signUp</button>
         </> : <HeaderLogined />}
 
         {

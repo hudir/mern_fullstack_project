@@ -42,13 +42,13 @@ export default function LoginForm({setLogin, setSignUp}) {
 
   return (
     <div>
-     <form onSubmit={submitHandler}>
+     <form onSubmit={submitHandler} className='container text-center'>
         <label>Email:</label>
-        <input type="email" name="email" onChange={onChangeHandler} />
+        <input className="form-control" type="email" name="email" onChange={onChangeHandler} />
         <br />
         <label>Password:</label>
-        <input type="password" name="password" onChange={onChangeHandler} />
-        <button type="submit">Log in</button>
+        <input className="form-control" type="password" name="password" onChange={onChangeHandler} />
+        <button className='btn btn-primary m-2' type="submit">Log in</button>
       </form>
       <h4>{message}</h4>
     </div>
