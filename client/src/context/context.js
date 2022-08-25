@@ -12,7 +12,7 @@ function ContextProvider({children}) {
         , [showCart, setShowCart] = useState(false)
 
         useEffect(()=>{
-          fetch('http://localhost:5000/product/all')
+          fetch('/product/all')
           .then(res=>res.json(res))
           .then(data=>setAllProducts(data))
         }, [updateProductList])
