@@ -1,4 +1,4 @@
-All test done!
+All tasks done!
 
 # MERN_fullstack_project
 This is the instructions and boilerplate code for small mern fullstack project planned by Arif. This will help students to get practical idea of fullstack and deployment 
